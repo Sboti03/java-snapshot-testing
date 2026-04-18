@@ -16,7 +16,7 @@ publishing {
         artifact sourcesJar
 
         pom {
-            name = 'java-snapsho-testing'
+            name = 'java-snapshot-testing'
             description = 'Snapshot Testing for Java'
             url = 'https://github.com/origin-energy/java-snapshot-testing'
 
