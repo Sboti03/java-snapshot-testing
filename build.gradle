@@ -32,56 +32,34 @@ subprojects { subproject ->
         mavenCentral()
     }
 
-    if (subproject.name == 'java-snapshot-testing-plugin-jackson3') {
-        tasks.withType(JavaCompile).configureEach {
-            javaCompiler = javaToolchains.compilerFor {
-                languageVersion = JavaLanguageVersion.of(17)
-            }
+    tasks.withType(JavaCompile).configureEach {
+        javaCompiler = javaToolchains.compilerFor {
+            languageVersion = JavaLanguageVersion.of(11)
         }
+    }
 
-        tasks.withType(Javadoc).configureEach {
-            javadocTool = javaToolchains.javadocToolFor {
-                languageVersion = JavaLanguageVersion.of(17)
-            }
+    tasks.withType(Javadoc).configureEach {
+        javadocTool = javaToolchains.javadocToolFor {
+            languageVersion = JavaLanguageVersion.of(11)
         }
+    }
 
-        tasks.withType(Test).configureEach {
-            javaLauncher = javaToolchains.launcherFor {
-                languageVersion = JavaLanguageVersion.of(17)
-            }
+    tasks.withType(Test).configureEach {
+        javaLauncher = javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(11)
         }
-    } else {
-        tasks.withType(JavaCompile).configureEach {
-            javaCompiler = javaToolchains.compilerFor {
-                languageVersion = JavaLanguageVersion.of(11)
-            }
-        }
+    }
 
-        tasks.withType(Javadoc).configureEach {
-            javadocTool = javaToolchains.javadocToolFor {
-                languageVersion = JavaLanguageVersion.of(11)
-            }
-        }
-
-        tasks.withType(Test).configureEach {
-            javaLauncher = javaToolchains.launcherFor {
-                languageVersion = JavaLanguageVersion.of(11)
-            }
-        }
-
-        tasks.withType(GroovyCompile).configureEach {
-            javaLauncher = javaToolchains.launcherFor {
-                languageVersion = JavaLanguageVersion.of(11)
-            }
+    tasks.withType(GroovyCompile).configureEach {
+        javaLauncher = javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(11)
         }
     }
 
     shadowJar {
         archiveClassifier = ''
-        if (subproject.name != 'java-snapshot-testing-plugin-jackson3') {
-            relocate 'org.assertj', 'shadow.org.assertj'
-            relocate 'org.opentest4j', 'shadow.org.opentest4j'
-        }
+        relocate 'org.assertj', 'shadow.org.assertj'
+        relocate 'org.opentest4j', 'shadow.org.opentest4j'
         exclude 'module-info.class'
     }
 
