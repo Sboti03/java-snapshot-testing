@@ -76,6 +76,7 @@ subprojects { subproject ->
         compileOnly "org.slf4j:slf4j-api:${project.slf4jVersion}"
     }
 
+    // Add verbose logging for Github Actions
     test {
         testLogging {
             events "passed", "skipped", "failed"
