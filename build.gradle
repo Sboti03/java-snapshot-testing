@@ -34,25 +34,25 @@ subprojects { subproject ->
 
     tasks.withType(JavaCompile).configureEach {
         javaCompiler = javaToolchains.compilerFor {
-            languageVersion = JavaLanguageVersion.of(17)
+            languageVersion = JavaLanguageVersion.of(11)
         }
     }
 
     tasks.withType(Javadoc).configureEach {
         javadocTool = javaToolchains.javadocToolFor {
-            languageVersion = JavaLanguageVersion.of(17)
+            languageVersion = JavaLanguageVersion.of(11)
         }
     }
 
     tasks.withType(Test).configureEach {
         javaLauncher = javaToolchains.launcherFor {
-            languageVersion = JavaLanguageVersion.of(17)
+            languageVersion = JavaLanguageVersion.of(11)
         }
     }
 
     tasks.withType(GroovyCompile).configureEach {
         javaLauncher = javaToolchains.launcherFor {
-            languageVersion = JavaLanguageVersion.of(17)
+            languageVersion = JavaLanguageVersion.of(11)
         }
     }
 
