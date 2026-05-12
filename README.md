@@ -32,14 +32,14 @@ testImplementation 'io.github.origin-energy:java-snapshot-testing-junit5:4.+'
 testImplementation("org.slf4j:slf4j-simple:2.0.0-alpha0")
 
 // Optional: Many will want to serialize into JSON.  In this case you should also add the Jackson plugin
-testImplementation 'io.github.origin-energy:java-snapshot-testing-plugin-jackson:4.+'
-testImplementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
-testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
-
-// For Jackson 3 use the dedicated plugin and serializer classes instead
 testImplementation 'io.github.origin-energy:java-snapshot-testing-plugin-jackson3:4.+'
 testImplementation 'tools.jackson.core:jackson-core:3.1.0'
 testImplementation 'tools.jackson.core:jackson-databind:3.1.0'
+
+// For Jackson 2 use the dedicated plugin and serializer classes instead
+testImplementation 'io.github.origin-energy:java-snapshot-testing-plugin-jackson:4.+'
+testImplementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
+testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
 
 // Optional: If you want Jackson to serialize Java 8 date/time types or Optionals you should also add the following dependencies
 testRuntimeOnly 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.11.3'
@@ -54,12 +54,12 @@ testRuntimeOnly 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.3'
  ```text
 serializer=au.com.origin.snapshots.serializers.v1.ToStringSnapshotSerializer
 serializer.base64=au.com.origin.snapshots.serializers.v1.Base64SnapshotSerializer
-serializer.json=au.com.origin.snapshots.jackson.serializers.v1.JacksonSnapshotSerializer
-serializer.orderedJson=au.com.origin.snapshots.jackson.serializers.v1.DeterministicJacksonSnapshotSerializer
+serializer.json=au.com.origin.snapshots.jackson3.serializers.v1.Jackson3SnapshotSerializer
+serializer.orderedJson=au.com.origin.snapshots.jackson3.serializers.v1.DeterministicJackson3SnapshotSerializer
 
-# Jackson 3 alternative
-# serializer.json=au.com.origin.snapshots.jackson3.serializers.v1.Jackson3SnapshotSerializer
-# serializer.orderedJson=au.com.origin.snapshots.jackson3.serializers.v1.DeterministicJackson3SnapshotSerializer
+# Jackson 2 alternative
+# serializer.json=au.com.origin.snapshots.jackson.serializers.v1.JacksonSnapshotSerializer
+# serializer.orderedJson=au.com.origin.snapshots.jackson.serializers.v1.DeterministicJacksonSnapshotSerializer
 comparator=au.com.origin.snapshots.comparators.v1.PlainTextEqualsComparator
 reporters=au.com.origin.snapshots.reporters.v1.PlainTextSnapshotReporter
 snapshot-dir=__snapshots__
